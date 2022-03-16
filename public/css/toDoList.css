@@ -1,0 +1,191 @@
+/* Color Theme Swatches in Hex */
+.color-theme_huifha-1-hex { color: #012840; }
+.color-theme_huifha-2-hex { color: #0F4C59; }
+.color-theme_huifha-3-hex { color: #196A73; }
+.color-theme_huifha-4-hex { color: #5BA691; }
+.color-theme_huifha-5-hex { color: #A9D9CB; }
+
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    
+}
+/* 編輯鉛筆的圖 */
+.pencil{
+    width: 20px;
+    height: 20px;
+}
+.containerWrapper{
+    padding: 20px 50px;
+    text-align: center;
+    background-color: #0F4C59;
+    
+    
+}
+.containerWrapper>div{
+    margin-top:60px ;
+}
+/* to dolist標題 */
+.title{
+    font-size: 60pt;
+    color: white;
+    text-shadow: 0.1em 0.1em 0.1em black;
+}
+/* 新增事項的btn */
+.sentBtn{
+    font-size: 20pt;
+    width:100%;
+    height: 60px;
+    color: white;
+    background-color: #5BA691;
+    border: 0;
+}
+.sentBtn:hover{
+    background-color:#8FA865 ;
+}
+/* 新增事項的表單*/
+.formWrapper{
+    width: 80%;
+    margin: 0 auto;
+}
+/* 新增事項的輸入框  */
+#keyJob{
+    height: 60px;
+    width: 100%;
+    text-align: center;
+    
+}
+.listWrapper{
+    width: 80%;
+    margin: 0 auto;
+    overflow-x: scroll;
+}
+/* 導覽列 */
+.nav-link{
+    background-color: #A9D9CB;
+    color: black;
+}
+.currentNav{
+    background-color: #012840;
+    color: white;
+}
+/* 事項清單 */
+
+.list{
+    table-layout: fixed;
+    width: 100%;
+    margin-top: 30px;
+    background-color: white;
+}
+.list tr:first-of-type{
+    font-size: 20pt;
+    border-bottom: 1px solid black;
+}
+.list tr{
+   height: 50px;
+}
+.list tr:not(:first-of-type):hover{
+    background-color: #5BA691;
+    color: white;
+}
+.list td{
+    font-size: 16pt;
+    width: 25%;
+}
+.list td>a{
+    text-decoration: none;
+    color: black;
+}
+.list td>a:hover{
+    font-weight: bolder;
+}
+.delete >span{
+    color: red;
+    font-size: 16pt;
+    font-weight: bolder;
+    text-align: center;
+}
+/* 對話框的關閉紐 */
+.closeModal{
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 35pt;
+    line-height: 40pt;
+    padding-bottom:20px ;
+    border: 0;
+}
+.closeModal:hover{
+    background-color: #A9D9CB;
+    color: white;
+}
+/* 編輯事項對話框 */
+
+#editList{
+    text-align: center;
+    position: fixed;
+    z-index: 1;
+    width: 600px;
+    height: 300px;
+    top: 25%;
+    left: 50%;
+    margin-left: -300px;
+    background-color: white;
+    border-radius: 10px;
+    display: none;
+}
+#editList form>div{
+    margin: 30px 0;
+}
+#editJob{
+    width: 80%;
+    height: 60px;
+}
+#editList form div>label{
+    margin-right: 50px;
+}
+.editBtn,.cancelBtn{
+    width: 100px;
+    height: 50px;
+    font-size: 16pt;
+    border :0px;
+    background-color: gainsboro;
+}
+.editBtn{
+    background-color: #5BA691;
+    color: white;
+    margin-right: 50px;
+}
+.editBtn:hover{
+    background-color: #8FA865;
+}
+/* 刪除對話框 */
+#deleteList{
+    text-align: center;
+    position: fixed;
+    z-index: 1;
+    width: 500px;
+    height: 250px;
+    top: 25%;
+    left: 50%;
+    margin-left: -250px;
+    background-color: white;
+    border-radius: 10px;
+    display: none;
+}
+/* 刪除框內的描述 */
+#deleteDes{
+    height: 50%;
+    font-size: 18pt;
+}
+#deleteDes p{
+    line-height: 150px;
+}
+#deleteDes + div{
+    margin: 0 auto;
+}

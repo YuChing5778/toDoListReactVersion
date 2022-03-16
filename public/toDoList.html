@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../bootstrap4/css/bootstrap.min.css">
+    <script src="../bootstrap4/js/jquery.min.js"></script>
+    <script src="../bootstrap4/js/popper.min.js"></script>
+    <script src="../bootstrap4/js/bootstrap.min.js"></script>
+    <script src="../js/jquery-3.6.0.js"></script>
+    <script src="../js/toDolist.js"></script>
+    <link rel="stylesheet" href="../css/toDoList.css">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <div class="containerWrapper">
+        <div>
+            <!-- 標題 -->
+            <h1 class="title">To Do List</h1>
+        </div>
+        <div class="formWrapper">
+            <!-- 表單 -->
+            <form id="sentJobText" action="">
+                <div class="row">
+                    <div class="col-9">
+                        <input id="keyJob" type="text" placeholder="請輸入代辦事項">
+
+                    </div>
+                    <div class="col-3">
+                        <!-- <button type='submit' class="sentBtn">確定</button> -->
+                        <input type="submit" class="sentBtn" value="確定">
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div class="listWrapper">
+
+            <!-- 導覽列 -->
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link currentNav" href="#">全部</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">代辦事項</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">已完成</a>
+                </li>
+            </ul>
+            <!-- table all -->
+            <table id="allArea" class="list">
+                <tr>
+                    <th>事項</th>
+                    <th>狀態</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>寫作業555555555555555555</td>
+                    <td>未完成</td>
+                    <td>
+                        <a class="edit" href="#"><img class="pencil" src="../img/pencil.png" alt=""> 編輯</a>
+                        <a class="delete" href="#"><span>&times;</span> 刪除</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>寫作業88888</td>
+                    <td>已完成</td>
+                    <td>
+                        <a class="edit" href="#"><img class="pencil" src="../img/pencil.png" alt=""> 編輯</a>
+                        <a class="delete" href="#"><span>&times;</span> 刪除</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!-- 編輯對話框 -->
+    <div id="editList">
+        <button class="closeModal">&times;</button>
+        <form action="">
+            <div>
+                <input id="editJob" type="text" placeholder="請輸入代辦事項">
+            </div>
+            <div>
+                <label>
+                    <input name="state" type="radio" value="未完成">未完成
+                </label>
+                <label>
+                    <input name="state" type="radio" value="已完成">已完成
+                </label>
+            </div>
+            <div>
+                <button class="editBtn" type="submit">確定</button>
+                <button class="cancelBtn">取消</button>
+            </div>
+        </form>
+
+    </div>
+    <!-- 刪除對話框 -->
+    <div id="deleteList">
+        <button class="closeModal">&times;</button>
+        <form action="">
+            <div>
+                <div id="deleteDes">
+                    <p>是否刪除<i>XXXXX</i>事項?</p>
+                </div>
+                <div>
+                    <button class="editBtn" type="submit">確定</button>
+                    <button class="cancelBtn">取消</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('.nav-link').on('click', function () {
+                var nav = $('.nav-link');
+                nav.removeClass('currentNav');
+                $(this).addClass('currentNav');
+            })
+            // 編輯視窗
+            $('.edit').on('click', function () {
+                editList.style.display = 'block';
+                var jobTitle = getJobTitle($(this));
+                // 取得job內容
+                $('#editJob').prop('value', jobTitle);
+                // 事項狀態
+                var state = getState($(this));
+                if (state == '未完成') {
+                    $('[value="未完成"]').prop('checked', true);
+
+                } else {
+                    $('[value="已完成"]').prop('checked', true);
+                }
+
+            })
+
+            //刪除視窗
+            $('.delete').on('click', function (e) {
+                deleteList.style.display = 'block';
+                // 取得job內容
+
+                var jobTitle = getJobTitle($(this));
+                // console.log(jobTitle);
+                $('#deleteDes').find('i').text(jobTitle);
+
+
+            })
+            // 傳入編輯或刪除的this物件
+            function getJobTitle(btn) {
+                // 有問題只能找到第一個事項
+                var jobTitle = btn.parents('tr').find('td').eq(0);
+                jobTitle = jobTitle.text();
+                return jobTitle;
+            }
+            function getState(btn) {
+                var state = btn.parents('tr').find('td').eq(1);
+                state = state.text();
+                return state;
+            }
+            // 取消視窗
+            $('.cancelBtn').on('click', function () {
+                $(this).parents('#deleteList').hide();
+                $(this).parents('#editList').hide();
+
+            })
+            // X關閉視窗
+            $('.closeModal').on('click', function () {
+                $(this).parents('#deleteList').hide();
+                $(this).parents('#editList').hide();
+            })
+            // 確認輸入事項的文字長度
+            $("#sentJobText").submit(function (e) {
+                e.preventDefault();
+                // 文字長度
+                var jobLength = $('#keyJob').val().length;
+                if(jobLength>10){
+                    alert('請輸入10個以內的文字長度');
+                    return false;
+                }else{
+                    return ture;
+                }
+                
+
+            });
+            console.log(Math.random());
+        })
+    </script>
+</body>
+
+</html>
